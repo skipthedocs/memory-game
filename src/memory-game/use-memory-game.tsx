@@ -19,7 +19,7 @@ type TGameState = {
 );
 
 export const useMemoryGame = () => {
-  const timeoutRef = useRef<number>();
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   const createCards = () => {
     const baseValues = ["🍎", "🍓", "📌", "🧰", "🧨", "👺", "🎈", "🚨"];
