@@ -12,10 +12,10 @@ type GameState = {
   cards: Record<CardId, Card>;
   moves: number;
 } & (
-  | { status: "ready"; flippedCards: [] }
+  | { status: "ready" }
   | { status: "oneFlipped"; flippedCards: [CardId] }
   | { status: "checking"; flippedCards: [CardId, CardId] }
-  | { status: "completed"; flippedCards: [] }
+  | { status: "completed" }
 );
 
 export const useMemoryGame = () => {
@@ -47,7 +47,6 @@ export const useMemoryGame = () => {
   const getInitialState = (): GameState => ({
     status: "ready",
     cards: createCards(),
-    flippedCards: [],
     moves: 0,
   });
 
@@ -71,7 +70,6 @@ export const useMemoryGame = () => {
     setGameState({
       status: areAllCardsMatched(updatedCards) ? "completed" : "ready",
       cards: updatedCards,
-      flippedCards: [],
       moves: moves + 1,
     });
   };
@@ -79,9 +77,19 @@ export const useMemoryGame = () => {
   const flipCard = (cardId: CardId) => {
     const card = gameState.cards[cardId];
 
-    if (card.isMatched) return;
-    if (gameState.flippedCards.some((id) => id === cardId)) return;
-    if (gameState.status === "checking") return;
+    if (card.isMatched) {
+      return;
+    };
+
+    if (gameState.status === "checking") {
+      return;
+    };
+
+    if (gameState.status === "oneFlipped") {
+      if (gameState.flippedCards.includes(cardId)) {
+        return;
+      }
+    }
 
     if (gameState.status === "ready") {
       setGameState({
@@ -105,12 +113,22 @@ export const useMemoryGame = () => {
     }
   };
 
+  const isCardFlipped = (cardId: CardId) => {
+    if (gameState.cards[cardId].isMatched) {
+      return true
+    };
+
+    if (gameState.status === "oneFlipped" || gameState.status === "checking") {
+      return gameState.flippedCards.includes(cardId);
+    }
+    
+    return false;
+  };
+
   return {
     gameState,
     flipCard,
+    isCardFlipped,
     resetGame: () => setGameState(getInitialState()),
-    isCardFlipped: (cardId: CardId) =>
-      gameState.flippedCards.some((id) => id === cardId) ||
-      gameState.cards[cardId].isMatched,
   };
 };
