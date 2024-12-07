@@ -1,4 +1,4 @@
-import { MemoryGame } from "./memory-game";
+import { MemoryGame } from "./MemoryGame";
 
 function App() {
   return <MemoryGame />;

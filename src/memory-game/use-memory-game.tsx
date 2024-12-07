@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-type CardId = string;
+type TCardId = string;
 
-export type Card = {
-  id: CardId;
+export type TCard = {
+  id: TCardId;
   value: string;
   isMatched: boolean;
 };
 
-type GameState = {
-  cards: Record<CardId, Card>;
+type TGameState = {
+  cards: Record<TCardId, TCard>;
   moves: number;
 } & (
   | { status: "ready" }
-  | { status: "oneFlipped"; flippedCards: [CardId] }
-  | { status: "checking"; flippedCards: [CardId, CardId] }
+  | { status: "oneFlipped"; flippedCards: [TCardId] }
+  | { status: "checking"; flippedCards: [TCardId, TCardId] }
   | { status: "completed" }
 );
 
 export const useMemoryGame = () => {
+  const timeoutRef = useRef<number>();
+
   const createCards = () => {
-    const baseValues = ["🍎", "🍌", "🍇", "🍊", "🍓", "🍑", "🥝", "🍍"];
+    const baseValues = ["🍎", "🍓", "📌", "🧰", "🧨", "👺", "🎈", "🚨"];
 
     const shuffledValues = [...baseValues, ...baseValues].sort(
       () => Math.random() - 0.5
     );
 
-    const cards = shuffledValues.reduce<Record<CardId, Card>>(
+    const cards = shuffledValues.reduce<Record<TCardId, TCard>>(
       (cardsMap, currentValue, index) => {
         const cardId = `card-${index}`;
 
@@ -44,18 +46,26 @@ export const useMemoryGame = () => {
     return cards;
   };
 
-  const getInitialState = (): GameState => ({
+  const getInitialState = (): TGameState => ({
     status: "ready",
     cards: createCards(),
     moves: 0,
   });
 
-  const [gameState, setGameState] = useState<GameState>(getInitialState);
+  const [gameState, setGameState] = useState<TGameState>(getInitialState);
 
-  const areAllCardsMatched = (cards: Record<CardId, Card>) =>
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const areAllCardsMatched = (cards: Record<TCardId, TCard>) =>
     Object.values(cards).every((card) => card.isMatched);
 
-  const handleCardMatch = (firstCardId: CardId, secondCardId: CardId) => {
+  const handleCardMatch = (firstCardId: TCardId, secondCardId: TCardId) => {
     const { cards, moves } = gameState;
     const firstCard = cards[firstCardId];
     const secondCard = cards[secondCardId];
@@ -74,16 +84,16 @@ export const useMemoryGame = () => {
     });
   };
 
-  const flipCard = (cardId: CardId) => {
+  const flipCard = (cardId: TCardId) => {
     const card = gameState.cards[cardId];
 
     if (card.isMatched) {
       return;
-    };
+    }
 
     if (gameState.status === "checking") {
       return;
-    };
+    }
 
     if (gameState.status === "oneFlipped") {
       if (gameState.flippedCards.includes(cardId)) {
@@ -102,33 +112,47 @@ export const useMemoryGame = () => {
     if (gameState.status === "oneFlipped") {
       const [firstCardId] = gameState.flippedCards;
 
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
       setGameState({
         ...gameState,
         status: "checking",
         flippedCards: [firstCardId, cardId],
-        moves: gameState.moves + 1,
       });
 
-      setTimeout(() => handleCardMatch(firstCardId, cardId), 1000);
+      timeoutRef.current = setTimeout(() => {
+        handleCardMatch(firstCardId, cardId);
+        timeoutRef.current = undefined;
+      }, 500);
     }
   };
 
-  const isCardFlipped = (cardId: CardId) => {
+  const isCardFlipped = (cardId: TCardId) => {
     if (gameState.cards[cardId].isMatched) {
-      return true
-    };
+      return true;
+    }
 
     if (gameState.status === "oneFlipped" || gameState.status === "checking") {
       return gameState.flippedCards.includes(cardId);
     }
-    
+
     return false;
+  };
+
+  const resetGame = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    setGameState(getInitialState());
   };
 
   return {
     gameState,
     flipCard,
     isCardFlipped,
-    resetGame: () => setGameState(getInitialState()),
+    resetGame,
   };
 };
