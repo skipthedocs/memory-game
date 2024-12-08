@@ -6,12 +6,12 @@ type GameFooterProps = {
 };
 
 export const GameFooter = ({ moves, reset }: GameFooterProps) => (
-  <div className="flex gap-4 p-8">
+  <div className="flex gap-4 p-8 font-system">
     {moves > 0 && (
       <button
         onClick={reset}
         className={cn(
-          "text-red-700 underline disabled:opacity-50 font-system",
+          "text-red-700 underline disabled:opacity-50",
           "hover:text-red-800 hover:no-underline",
           "active:text-red-900",
           "focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-red-50",
