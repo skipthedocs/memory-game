@@ -75,6 +75,11 @@ export const useMemoryGame = () => {
     moves: 0,
   }));
 
+  /*
+   * Cleanup effect that removes any pending timeouts when the component unmounts
+   * This is important to prevent memory leaks and ensure timeouts don't fire
+   * after the component is no longer in use, which could cause errors
+   */
   useEffect(() => {
     return () => timeoutRef.current && clearTimeout(timeoutRef.current);
   }, []);
