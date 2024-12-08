@@ -9,7 +9,7 @@ export const MemoryGame: React.FC = () => {
   const { gameState, flipCard, resetGame, isCardFlipped } = useMemoryGame();
 
   return (
-    <div className="w-full min-h-[100vh] bg-red-50 flex justify-center items-center flex-col select-none">
+    <div className="w-full min-w-80 min-h-screen bg-red-50 flex flex-col items-center justify-center select-none">
       <Board>
         {Object.values(gameState.cards).map((cardDetails) => {
           const isFlipped = isCardFlipped(cardDetails.id);
