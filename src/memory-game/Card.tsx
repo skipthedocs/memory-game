@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { TCard } from "./use-memory-game";
+import { TCard } from "./useMemoryGame";
 import { cn } from "../lib/utils";
 
 type TCardProps = {

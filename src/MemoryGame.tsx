@@ -1,5 +1,5 @@
 import React from "react";
-import { useMemoryGame } from "./memory-game/use-memory-game";
+import { useMemoryGame } from "./memory-game/useMemoryGame";
 import { Card } from "./memory-game/Card";
 import { Board } from "./memory-game/Board";
 import { GameOver } from "./memory-game/GameOver";
