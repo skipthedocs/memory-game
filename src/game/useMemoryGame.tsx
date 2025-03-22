@@ -31,7 +31,7 @@ type TGameState = {
   moves: number;
 } & (
   | { status: "ready" }
-  | { status: "oneFlipped"; flippedCards: [TCardId] }
+  | { status: "oneFlipped"; flippedCard: TCardId }
   | { status: "checking"; flippedCards: [TCardId, TCardId] }
   | { status: "completed" }
 );
@@ -128,10 +128,7 @@ export const useMemoryGame = () => {
       return;
     }
 
-    if (
-      gameState.status === "oneFlipped" &&
-      gameState.flippedCards.includes(cardId)
-    ) {
+    if (gameState.status === "oneFlipped" && gameState.flippedCard === cardId) {
       return;
     }
 
@@ -139,13 +136,13 @@ export const useMemoryGame = () => {
       setGameState({
         ...gameState,
         status: "oneFlipped",
-        flippedCards: [cardId],
+        flippedCard: cardId,
       });
       return;
     }
 
     if (gameState.status === "oneFlipped") {
-      const [firstCardId] = gameState.flippedCards;
+      const firstCardId = gameState.flippedCard;
 
       setGameState({
         ...gameState,
@@ -162,11 +159,22 @@ export const useMemoryGame = () => {
 
   const isCardFlipped = (cardId: TCardId) => {
     const card = gameState.cards[cardId];
-    return (
-      card.isMatched ||
-      ((gameState.status === "oneFlipped" || gameState.status === "checking") &&
-        gameState.flippedCards.includes(cardId))
-    );
+    if (card.isMatched) {
+      return true;
+    }
+
+    if (gameState.status === "oneFlipped" && gameState.flippedCard === cardId) {
+      return true;
+    }
+
+    if (
+      gameState.status === "checking" &&
+      gameState.flippedCards.includes(cardId)
+    ) {
+      return true;
+    }
+
+    return false;
   };
 
   const resetGame = () => {
