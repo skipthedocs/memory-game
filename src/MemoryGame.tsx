@@ -1,9 +1,9 @@
 import React from "react";
-import { useMemoryGame } from "./MemoryGame/useMemoryGame";
-import { Card } from "./MemoryGame/Card";
-import { Board } from "./MemoryGame/Board";
-import { GameOver } from "./MemoryGame/GameOver";
-import { GameFooter } from "./MemoryGame/GameFooter";
+import { useMemoryGame } from "./memoryGame/useMemoryGame";
+import { Card } from "./memoryGame/Card";
+import { Board } from "./memoryGame/Board";
+import { GameOver } from "./memoryGame/GameOver";
+import { GameFooter } from "./memoryGame/GameFooter";
 
 export const MemoryGame: React.FC = () => {
   const { gameState, flipCard, resetGame, isCardFlipped } = useMemoryGame();
