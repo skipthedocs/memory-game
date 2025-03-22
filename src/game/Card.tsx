@@ -40,8 +40,8 @@ export const Card = ({
         "text-red-700 underline font-system",
         "hover:text-red-800 hover:no-underline",
         "active:text-red-900",
-        "focus:outline-none focus:ring-4 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-red-50",
-        "rounded-sm transition-colors",
+        "focus:outline-hidden focus:ring-4 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-red-50",
+        "rounded-xs transition-colors",
       )}
     >
       <motion.div
@@ -60,7 +60,7 @@ export const Card = ({
         {/* Front of card */}
         <div
           className={cn(
-            "w-full h-full absolute inset-0 rounded-lg border-2 shadow-sm overflow-hidden border-red-50",
+            "w-full h-full absolute inset-0 rounded-lg border-2 shadow-xs overflow-hidden border-red-50",
             isDisabled ? "cursor-not-allowed" : "cursor-pointer",
           )}
         >

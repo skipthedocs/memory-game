@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-system: Roboto Mono Variable, monospace;
+}
 
 html,
 body {
