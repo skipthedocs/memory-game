@@ -1,7 +1,5 @@
 import { MemoryGame } from "./MemoryGame";
 
-function App() {
+export const App = () => {
   return <MemoryGame />;
-}
-
-export default App;
+};
