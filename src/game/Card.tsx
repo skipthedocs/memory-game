@@ -19,12 +19,9 @@ export const Card = ({
   const [randomTilt, setRandomTilt] = useState(0);
 
   useEffect(() => {
-    const tilt =
-      isFlipped === true && cardDetails.isMatched === false
-        ? Math.random() < 0.5
-          ? Math.random() * 4 - 6
-          : Math.random() * 4 + 2
-        : 0;
+    const isTilted = isFlipped && !cardDetails.isMatched;
+    const randomAngle = (Math.random() - 0.5) * 12;
+    const tilt = isTilted ? randomAngle : 0;
 
     setRandomTilt(tilt);
   }, [isFlipped, cardDetails.isMatched]);
