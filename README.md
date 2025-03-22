@@ -1,8 +1,36 @@
-
-# Memory game with discriminated unions in typescript
+# Memory game with discriminated unions in TypeScript
 
 This project demonstrates how to build a type-safe memory card game using React and TypeScript, with a focus on modeling game state using discriminated unions.
 
 ## Overview
 
-The memory game is a classic card-matching puzzle where players need to find pairs of matching cards.
+The memory game is a classic card-matching puzzle where players need to find pairs of matching cards. This implementation emphasizes type safety and state management using TypeScript's discriminated unions.
+
+## Getting started
+
+Follow these steps to set up and run the project locally:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/memory-game.git
+   cd memory-game
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:3000` to play the game.
+
+## Features
+
+- **Type-safe game state**: Leveraging TypeScript's discriminated unions for robust state management.
+- **Interactive gameplay**: Flip cards, match pairs, and track your progress.
+- **React-based UI**: A responsive and dynamic user interface built with React.
+- **Customizable**: Easily extendable to include more cards, themes, or rules.
