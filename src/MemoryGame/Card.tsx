@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { TCard } from "./useMemoryGame";
 import { cn } from "../lib/utils";
+import type { TCard } from "./useMemoryGame";
 
 type TCardProps = {
   cardDetails: TCard;
@@ -31,6 +31,7 @@ export const Card = ({
 
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={isFlipped || isDisabled}
       tabIndex={isFlipped || isDisabled ? -1 : 0}
@@ -40,7 +41,7 @@ export const Card = ({
         "hover:text-red-800 hover:no-underline",
         "active:text-red-900",
         "focus:outline-none focus:ring-4 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-red-50",
-        "rounded-sm transition-colors"
+        "rounded-sm transition-colors",
       )}
     >
       <motion.div
@@ -60,7 +61,7 @@ export const Card = ({
         <div
           className={cn(
             "w-full h-full absolute inset-0 rounded-lg border-2 shadow-sm overflow-hidden border-red-50",
-            isDisabled ? "cursor-not-allowed" : "cursor-pointer"
+            isDisabled ? "cursor-not-allowed" : "cursor-pointer",
           )}
         >
           <div className="w-full h-full bg-red-100 flex justify-center items-center">

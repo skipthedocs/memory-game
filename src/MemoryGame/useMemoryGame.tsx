@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TCardId = string;
 
@@ -52,7 +52,7 @@ export const useMemoryGame = () => {
   const createCards = () => {
     const baseValues = ["🍎", "🍓", "📌", "🧰", "🧨", "👺", "🎈", "🚨"];
     const shuffledValues = [...baseValues, ...baseValues].sort(
-      () => Math.random() - 0.5
+      () => Math.random() - 0.5,
     );
 
     return shuffledValues.reduce<Record<TCardId, TCard>>(
@@ -65,7 +65,7 @@ export const useMemoryGame = () => {
         };
         return cardsMap;
       },
-      {}
+      {},
     );
   };
 
@@ -103,7 +103,7 @@ export const useMemoryGame = () => {
       }
 
       const isCompleted = Object.values(updatedCards).every(
-        (card) => card.isMatched
+        (card) => card.isMatched,
       );
 
       return {
