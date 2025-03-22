@@ -1,10 +1,10 @@
-import { Board } from "./memoryGame/Board";
-import { Card } from "./memoryGame/Card";
-import { GameFooter } from "./memoryGame/GameFooter";
-import { GameOver } from "./memoryGame/GameOver";
-import { useMemoryGame } from "./memoryGame/useMemoryGame";
+import { Board } from "./game/Board";
+import { Card } from "./game/Card";
+import { GameFooter } from "./game/GameFooter";
+import { GameOver } from "./game/GameOver";
+import { useMemoryGame } from "./game/useMemoryGame";
 
-export const MemoryGame: React.FC = () => {
+export const Game: React.FC = () => {
   const { gameState, flipCard, resetGame, isCardFlipped } = useMemoryGame();
 
   return (

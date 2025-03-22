@@ -1,5 +1,5 @@
-import { MemoryGame } from "./MemoryGame";
+import { Game } from "./Game";
 
 export const App = () => {
-  return <MemoryGame />;
+  return <Game />;
 };
