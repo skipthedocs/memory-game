@@ -1,4 +1,3 @@
-import React from "react";
 import { Board } from "./memoryGame/Board";
 import { Card } from "./memoryGame/Card";
 import { GameFooter } from "./memoryGame/GameFooter";
