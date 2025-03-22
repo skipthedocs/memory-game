@@ -34,3 +34,14 @@ Follow these steps to set up and run the project locally:
 - **Interactive gameplay**: Flip cards, match pairs, and track your progress.
 - **React-based UI**: A responsive and dynamic user interface built with React.
 - **Customizable**: Easily extendable to include more cards, themes, or rules.
+
+## Development tools
+
+This project uses **Biome.js** as a unified tool for linting, formatting, and code analysis. Biome.js replaces the need for separate tools like ESLint and Prettier, providing a faster and more integrated developer experience.
+
+To run Biome.js checks, use the following command:
+```bash
+npx biome --help
+```
+
+For more information about Biome.js, visit [Biome.js documentation](https://biomejs.dev/).
