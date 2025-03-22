@@ -41,7 +41,7 @@ export const useMemoryGame = () => {
    * Stores the timeout ID used when checking if two cards match
    * Using useRef ensures the timeout can be cleared even if the component re-renders
    */
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   /*
    * Creates a new set of cards for the game
@@ -81,7 +81,11 @@ export const useMemoryGame = () => {
    * after the component is no longer in use, which could cause errors
    */
   useEffect(() => {
-    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   /*
@@ -152,7 +156,7 @@ export const useMemoryGame = () => {
 
       timeoutRef.current = setTimeout(() => {
         handleCardMatch(firstCardId, cardId);
-        timeoutRef.current = undefined;
+        timeoutRef.current = null;
       }, 500);
     }
   };
