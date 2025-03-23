@@ -4,6 +4,11 @@ import { GameFooter } from "./game/GameFooter";
 import { GameOver } from "./game/GameOver";
 import { useMemoryGame } from "./game/useMemoryGame";
 
+/*
+ * Main component for the Memory Game
+ * - Renders the game board, footer, and game-over message
+ * - Uses the useMemoryGame hook to manage game state
+ */
 export const Game: React.FC = () => {
   const { gameState, flipCard, resetGame, isCardFlipped } = useMemoryGame();
 
