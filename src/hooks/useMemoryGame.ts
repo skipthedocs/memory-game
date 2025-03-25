@@ -101,6 +101,12 @@ export const useMemoryGame = () => {
     moves: 0,
   });
 
+  /*
+   * Side effect:
+   * - Monitors the "checking" state of the game
+   * - Schedules a delayed dispatch to check if the two flipped cards match
+   * - Uses a timeout of 800ms to allow the player to see the flipped cards
+   */
   useEffect(() => {
     if (gameState.status === "checking") {
       set(() => {
