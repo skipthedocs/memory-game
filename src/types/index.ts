@@ -34,6 +34,12 @@ export type TGameState = {
   | { status: "completed" }
 );
 
+/*
+ * Represents all possible actions that can be dispatched in the game
+ * - START_NEW_GAME: transitions to "idle" state and shuffles the cards
+ * - FLIP_CARD: transitions from "idle" to "oneFlipped" or from "oneFlipped" to "checking"
+ * - CHECK_MATCH: transitions from "checking" to "idle" or "completed"
+ */
 export type TAction =
   | { type: "START_NEW_GAME" }
   | { type: "FLIP_CARD"; payload: { cardId: TCardId } }
