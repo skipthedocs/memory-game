@@ -17,6 +17,7 @@ export const GameFooter = ({ moves, reset }: GameFooterProps) => (
           "active:text-red-900",
           "focus:outline-hidden focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-red-50",
           "rounded-xs transition-colors",
+          "cursor-pointer",
         )}
       >
         Start new game

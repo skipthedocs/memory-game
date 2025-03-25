@@ -12,7 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@fontsource-variable/roboto-mono": "^5.1.0",
+    "@fontsource/press-start-2p": "^5.2.5",
     "clsx": "^2.1.1",
     "motion": "^12.5.0",
     "react": "^19.0.0",
