@@ -122,12 +122,14 @@ export const useMemoryGame = () => {
   const isCardFlipped = (cardId: TCardId) => {
     const card = gameState.cards[cardId];
 
-    return (
-      card.isMatched ||
-      (gameState.status === "oneFlipped" && gameState.flippedCard === cardId) ||
-      (gameState.status === "checking" &&
-        gameState.flippedCards.includes(cardId))
-    );
+    const isMatched = card.isMatched;
+    const isOneFlipped =
+      gameState.status === "oneFlipped" && gameState.flippedCard === cardId;
+    const isChecked =
+      gameState.status === "checking" &&
+      gameState.flippedCards.includes(cardId);
+
+    return isMatched || isOneFlipped || isChecked;
   };
 
   const startNewGame = () => {
