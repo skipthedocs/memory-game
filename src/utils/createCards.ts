@@ -1,4 +1,4 @@
-import type { TCardId, TCard } from "../types";
+import type { TCard, TCardId } from "../types";
 
 /*
  * Creates a new set of cards for the game

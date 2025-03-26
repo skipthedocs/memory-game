@@ -1,5 +1,5 @@
-import type { TGameState, TAction, TCardId } from "../types";
 import { useEffect, useReducer } from "react";
+import type { TAction, TCardId, TGameState } from "../types";
 import { createCards } from "../utils/createCards";
 import { useTimeout } from "./useTimeout";
 

@@ -1,6 +1,6 @@
-import type { TCard } from "../types";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import type { TCard } from "../types";
 import { cn } from "../utils/cn";
 
 type TCardProps = {
