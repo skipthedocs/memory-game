@@ -28,6 +28,8 @@ Follow these steps to set up and run the project locally:
 
 4. Open your browser and navigate to `http://localhost:3000` to play the game.
 
+Alternatively, you can try the game online at [Memory Game](https://skipthedocs.github.io/memory-game/).
+
 ## Features
 
 - **Type-safe game state**: Leveraging TypeScript's discriminated unions for robust state management.
